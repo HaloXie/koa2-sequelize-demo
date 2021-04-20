@@ -1,0 +1,22 @@
+{
+  "sqltools.connections": [
+    {
+      "mysqlOptions": {
+        "authProtocol": "default"
+      },
+      "previewLimit": 50,
+      "server": "localhost",
+      "port": 3306,
+      "driver": "MySQL",
+      "name": "local-mysql",
+      "database": "sequelize_demo",
+      "username": "root",
+      "password": "root"
+    }
+  ],
+  "cSpell.words": [
+    "biguint",
+    "cthrow",
+    "idgen"
+  ]
+}
