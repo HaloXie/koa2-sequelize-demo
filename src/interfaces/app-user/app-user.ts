@@ -42,8 +42,7 @@ interface IBasicOut {
 }
 
 export interface IFindListIn {
-  where?: any;
-  extWhere?: any;
+  name?: string;
   limit?: number;
   offset?: number;
 }

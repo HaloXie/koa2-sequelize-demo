@@ -25,6 +25,7 @@
     "strictPropertyInitialization": false
   },
   "include": [
-    "src/**/*"
+    "src/**/*",
+    "src/include.d/*",
   ]
 }

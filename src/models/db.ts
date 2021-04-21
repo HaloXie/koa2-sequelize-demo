@@ -17,11 +17,11 @@ export const sequelize = new Sequelize({
     return member.endsWith('Model');
   },
   define: {
-    timestamps: true,
-    paranoid: true,
+    timestamps: true, //是否开启时间戳createAt  deleteAt  updateAt
+    underscored: true, //下划线
+    freezeTableName: true, //禁止sequelize修改表名，默认会在表后边添加一个字母`s`表示复数
+    paranoid: true, //开启假删除
     charset: 'utf8',
-    underscored: true,
-    freezeTableName: true,
   },
   dialectOptions: {
     dateStrings: true,

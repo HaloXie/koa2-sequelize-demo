@@ -30,7 +30,7 @@
   dependencies:
     "@types/node" "*"
 
-"@types/bluebird@*":
+"@types/bluebird@*", "@types/bluebird@^3.5.33":
   version "3.5.33"
   resolved "https://registry.yarnpkg.com/@types/bluebird/-/bluebird-3.5.33.tgz#d79c020f283bd50bd76101d7d300313c107325fc"
   integrity sha512-ndEo1xvnYeHxm7I/5sF6tBvnsA4Tdi3zj1keRKRs12SP+2ye2A27NDJ1B6PqkfMbGAcT+mqQVqbZRIrhfOp5PQ==

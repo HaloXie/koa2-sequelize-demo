@@ -1,5 +1,7 @@
+import { Op } from 'sequelize';
+
 import { BaseService } from '../base';
-import { AppUserModel, ConstAppUser } from '@/models';
+import { AppUserModel } from '@/models';
 import { IAppUser } from '@/interfaces';
 
 import _ from 'lodash';
@@ -8,23 +10,19 @@ export interface IAppUserService extends AppUserService {}
 
 export class AppUserService extends BaseService {
   async findList(param: IAppUser.IFindListIn) {
-    const options: any = {
+    const options = {
       where: {},
+      limit: _.toInteger(param.limit || 0),
+      offset: _.toInteger(param.offset || 10),
     };
-    options.limit = _.toInteger(param.limit || 0);
-    options.offset = _.toInteger(param.offset || 10);
+    if (param.name) {
+      options.where = {
+        name: { [Op.like]: `%${param.name}%` },
+      };
+    }
 
     const list = await AppUserModel.findAndCountAll(options);
     return list;
-  }
-
-  /**
-   * 用于下拉框绑定
-   */
-  async bindData() {
-    return AppUserModel.findAll({
-      attributes: [ConstAppUser.ID],
-    });
   }
 
   /**

@@ -13,7 +13,7 @@ import _ from 'lodash';
 const { STRING } = DataType;
 
 @Table
-export class BaseModel extends Model<BaseModel> {
+export class BaseModel extends Model {
   @Column({
     type: STRING(20),
     primaryKey: true,

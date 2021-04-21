@@ -7,9 +7,10 @@ import json from 'koa-json';
 import KoaLogger from 'koa-logger';
 import moment from 'moment';
 import * as dotenv from 'dotenv';
+dotenv.config();
 
 import { sequelize } from '@/models/db';
-dotenv.config();
+import router from '@/routes';
 
 const port = process.env.PORT || 5000;
 
@@ -24,6 +25,8 @@ app.use(async (ctx, next) => {
   const ms = moment().diff(start, 'milliseconds');
   console.log(`${ctx.method} ${ctx.url} - ${ms}ms`);
 });
+//
+app.use(router.routes()).use(router.allowedMethods());
 
 const server = http.createServer(app.callback());
 sequelize

@@ -7,4 +7,4 @@ export const DB_PORT = process.env.DB_PORT || '3306';
 export const DB_NAME = process.env.DB_NAME || 'sequelize_demo';
 export const DB_USERNAME = process.env.DB_USERNAME || 'root';
 export const DB_PASSWORD = process.env.DB_PASSWORD || 'root';
-export const TIMEZONE = process.env.TIMEZONE || '+8:00';
+export const TIMEZONE = process.env.TIMEZONE || '+08:00';
