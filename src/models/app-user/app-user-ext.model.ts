@@ -1,11 +1,13 @@
-import { Table, Column } from 'sequelize-typescript';
+import { Table, Column, ForeignKey } from 'sequelize-typescript';
 
-import { BaseModel } from '@/base/base.model';
+import { BaseModel } from '../base';
+import { AppUserModel } from './app-user.model';
 
 @Table({
   tableName: 'app_user_ext',
 })
 export class AppUserExtModel extends BaseModel {
+  @ForeignKey(() => AppUserModel)
   @Column({ comment: 'user id' })
   appUserId: string;
 

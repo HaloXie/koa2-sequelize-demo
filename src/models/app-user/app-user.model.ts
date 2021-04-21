@@ -1,8 +1,8 @@
 import { Table, Column, HasOne, HasMany, DataType } from 'sequelize-typescript';
 
-import { BaseModel } from '@/base/base.model';
-import { AppUserExtModel } from '../models/app-user-ext.model';
-import { AppUserBalanceModel } from '../models/app-user-balance.model';
+import { BaseModel } from '../base';
+import { AppUserExtModel } from './app-user-ext.model';
+import { AppUserBalanceModel } from './app-user-balance.model';
 
 const { INTEGER } = DataType;
 

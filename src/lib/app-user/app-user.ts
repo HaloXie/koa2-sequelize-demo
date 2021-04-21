@@ -1,5 +1,5 @@
-import { BaseService } from '@/base/base-service';
-import { AppUserModel, ConstAppUser } from '@/models/app-user.model';
+import { BaseService } from '../base';
+import { AppUserModel, ConstAppUser } from '@/models';
 import { IAppUser } from '@/interfaces';
 
 import _ from 'lodash';

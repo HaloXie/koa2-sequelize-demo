@@ -1,6 +1,6 @@
 import { Table, Column, ForeignKey, BelongsTo } from 'sequelize-typescript';
 
-import { BaseModel } from '@/base/base.model';
+import { BaseModel } from '../base';
 import { AppUserModel } from './app-user.model';
 import { AppUserExtModel } from './app-user-ext.model';
 

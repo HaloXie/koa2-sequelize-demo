@@ -1,6 +1,5 @@
 import { DB_NAME, DB_USERNAME, DB_PASSWORD, DB_HOST, DB_PORT, TIMEZONE } from '@/config/env';
 import { Sequelize } from 'sequelize-typescript';
-import _ from 'lodash';
 
 export const sequelize = new Sequelize({
   dialect: 'mysql',
@@ -11,9 +10,11 @@ export const sequelize = new Sequelize({
   username: DB_USERNAME,
   password: DB_PASSWORD,
   storage: ':memory:',
+  // models: [__dirname + '/models/**/*.model.ts'],
   modelPaths: [__dirname + `/*.model.ts`],
   modelMatch: (filename, member) => {
-    return _.endsWith(member, 'Model');
+    // return filename.substring(0, filename.indexOf('.model')) === member.toLowerCase();
+    return member.endsWith('Model');
   },
   define: {
     timestamps: true,

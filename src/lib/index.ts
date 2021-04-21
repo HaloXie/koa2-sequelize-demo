@@ -1,1 +1,1 @@
-export * as AppUserService from './app-user';
+export * from './app-user/app-user';
