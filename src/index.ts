@@ -9,7 +9,13 @@ import moment from 'moment';
 import * as dotenv from 'dotenv';
 dotenv.config();
 
-import { sequelize } from '@/models/db';
+// 注意这里一定不能使用 @ 标记
+import { isProduction } from './config/env';
+if (isProduction()) {
+  require('module-alias/register');
+}
+
+import { sequelize } from '@/models';
 import router from '@/routes';
 
 const port = process.env.PORT || 5000;
@@ -29,6 +35,7 @@ app.use(async (ctx, next) => {
 app.use(router.routes()).use(router.allowedMethods());
 
 const server = http.createServer(app.callback());
+console.log(sequelize);
 sequelize
   .authenticate()
   .then(() => {

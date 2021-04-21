@@ -1,21 +1,18 @@
-import { DB_NAME, DB_USERNAME, DB_PASSWORD, DB_HOST, DB_PORT, TIMEZONE } from '@/config/env';
+import { DB_NAME, DB_USERNAME, DB_PASSWORD, DB_HOST, DB_PORT, isProduction } from '@/config/env';
 import { Sequelize } from 'sequelize-typescript';
 
 export const sequelize = new Sequelize({
   dialect: 'mysql',
   host: DB_HOST,
-  timezone: TIMEZONE,
+  timezone: '+08:00',
   port: +DB_PORT,
   database: DB_NAME,
   username: DB_USERNAME,
   password: DB_PASSWORD,
   storage: ':memory:',
-  // models: [__dirname + '/models/**/*.model.ts'],
-  modelPaths: [__dirname + `/*.model.ts`],
-  modelMatch: (filename, member) => {
-    // return filename.substring(0, filename.indexOf('.model')) === member.toLowerCase();
-    return member.endsWith('Model');
-  },
+  // models: [__dirname + '/models/**/*.model.js'],
+  modelPaths: [__dirname + `/*.model.${isProduction() ? 'js' : 'ts'}`],
+  modelMatch: (filename, member) => member.endsWith('Model'),
   define: {
     timestamps: true, //是否开启时间戳createAt  deleteAt  updateAt
     underscored: true, //下划线
@@ -23,6 +20,7 @@ export const sequelize = new Sequelize({
     paranoid: true, //开启假删除
     charset: 'utf8',
   },
+  // 重写 settings
   dialectOptions: {
     dateStrings: true,
     typeCast: (field: any, next: () => void) => {

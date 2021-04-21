@@ -11,10 +11,10 @@
     "db:undoAll": "sequelize db:migrate:undo:all",
     "lint": "eslint 'src/**/*.ts'",
     "lint:fix": "eslint 'src/**/*.ts' --fix",
-    "start": "node .",
+    "start": "rimraf build/ && tsc && node .",
     "build": "rimraf build/ && tsc",
-    "dev": "rimraf build/ && tsc-watch --onSuccess 'node .'",
-    "prd": "pm2 start bin/www",
+    "dev": "nodemon src/index.ts",
+    "prd": "",
     "test": "echo \"Error: no test specified\" && exit 1",
     "preinstall": "node -e \"if (!/yarn\\.js$/.test(process.env.npm_execpath)) {throw new Error('NPM is not recommended, use Yarn instead')}\""
   },
@@ -29,6 +29,7 @@
     "koa-logger": "^3.2.0",
     "koa-router": "^7.4.0",
     "lodash": "^4.17.21",
+    "module-alias": "^2.2.2",
     "moment": "^2.29.1",
     "mysql2": "^2.2.5",
     "reflect-metadata": "^0.1.13",
@@ -59,10 +60,11 @@
     "eslint-plugin-prettier": "^3.1.2",
     "husky": "^6.0.0",
     "lint-staged": "^10.5.4",
-    "nodemon": "^1.19.1",
+    "nodemon": "^2.0.7",
     "rimraf": "^3.0.2",
     "sequelize-cli": "^6.2.0",
-    "tsc-watch": "^4.2.9"
+    "ts-node": "^9.1.1",
+    "tsconfig-paths": "^3.9.0"
   },
   "husky": {
     "hooks": {
@@ -73,5 +75,8 @@
     "*.ts?(x)": [
       "eslint --cache --fix --ext .tsx --ext .ts"
     ]
+  },
+  "_moduleAliases": {
+    "@": "./build"
   }
 }
