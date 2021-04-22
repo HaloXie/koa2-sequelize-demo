@@ -35,7 +35,6 @@ app.use(async (ctx, next) => {
 app.use(router.routes()).use(router.allowedMethods());
 
 const server = http.createServer(app.callback());
-console.log(sequelize);
 sequelize
   .authenticate()
   .then(() => {

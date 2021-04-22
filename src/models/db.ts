@@ -11,7 +11,7 @@ export const sequelize = new Sequelize({
   password: DB_PASSWORD,
   storage: ':memory:',
   // models: [__dirname + '/models/**/*.model.js'],
-  modelPaths: [__dirname + `/*.model.${isProduction() ? 'js' : 'ts'}`],
+  modelPaths: [__dirname + `/**/*.model.${isProduction() ? 'js' : 'ts'}`],
   modelMatch: (filename, member) => member.endsWith('Model'),
   define: {
     timestamps: true, //是否开启时间戳createAt  deleteAt  updateAt
