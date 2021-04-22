@@ -32,7 +32,7 @@ export const cthrow = (errCode: number, errMsg: string) => {
 
 // db
 export const assertById = async <T extends Model>(model: T, id: number) => {
-  const _one = await model.$count({
+  const _one = await model({
     where: { id },
   });
   !_one && cthrow(400, '需要更新的信息不存在');
