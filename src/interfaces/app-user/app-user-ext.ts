@@ -1,5 +1,5 @@
 export interface ICreateIn {
-  userId: string;
+  appUserId: string;
   reference: string;
   description?: string;
 }

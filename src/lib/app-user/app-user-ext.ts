@@ -5,7 +5,7 @@ import { AppUserModel, AppUserExtModel } from '@/models';
 import { IAppUserExt } from '@/interfaces';
 
 export const assertExisted = async (id: number) => {
-  const _one = await AppUserModel.findOne({
+  const _one = await AppUserExtModel.findOne({
     where: { id },
   });
   !_one && cthrow(400, '需要更新的信息不存在');
