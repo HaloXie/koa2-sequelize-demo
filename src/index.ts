@@ -31,6 +31,16 @@ app.use(async (ctx, next) => {
   const ms = moment().diff(start, 'milliseconds');
   console.log(`${ctx.method} ${ctx.url} - ${ms}ms`);
 });
+app.use(async (ctx, next) => {
+  try {
+    await next();
+  } catch (err) {
+    ctx.status = JSON.parse(err.message).errCode;
+    ctx.body = err.message;
+    ctx.type = 'json';
+    ctx.app.emit('error', err);
+  }
+});
 //
 app.use(router.routes()).use(router.allowedMethods());
 

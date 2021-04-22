@@ -12,8 +12,8 @@ export class AppUserService extends BaseService {
   async findList(param: IAppUser.IFindListIn) {
     const options = {
       where: {},
-      limit: _.toInteger(param.limit || 0),
-      offset: _.toInteger(param.offset || 10),
+      limit: _.toInteger(param.limit || 10),
+      offset: _.toInteger(param.offset || 0),
     };
     if (param.name) {
       options.where = {
@@ -41,10 +41,12 @@ export class AppUserService extends BaseService {
   async create(param: IAppUser.ICreateIn) {
     // 验证是否存在重复
     const _count = await AppUserModel.count({
-      where: {},
+      where: {
+        phone: param.phone,
+      },
     });
 
-    _count && _count > 0 && this.cthrow(511, '提交信息已存在');
+    _count && _count > 0 && this.cthrow(400, '提交信息已存在');
 
     const result = await AppUserModel.create(param);
     return {
@@ -62,7 +64,7 @@ export class AppUserService extends BaseService {
       where: { id: param.id },
     });
 
-    !_one && this.cthrow(511, '需要更新的信息不存在');
+    !_one && this.cthrow(400, '需要更新的信息不存在');
     // other validation here
 
     await AppUserModel.update(param, { where: { id: param.id } });
@@ -81,7 +83,7 @@ export class AppUserService extends BaseService {
       where: { id },
     });
 
-    !_one && this.cthrow(511, '需要删除的信息不存在');
+    !_one && this.cthrow(400, '需要删除的信息不存在');
     // other validation here
 
     await AppUserModel.destroy({ where: { id } });

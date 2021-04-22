@@ -13,23 +13,24 @@ router.get('/', async (ctx) => {
     offset: ctx.query.offset,
   });
 
-  ctx.body = appUserService.findList(queries);
+  ctx.body = await appUserService.findList(queries);
 });
 
-router.get('/{id}', async (ctx) => {
-  ctx.body = appUserService.findOne(ctx.params.id);
+router.get('/:id', async (ctx) => {
+  ctx.body = await appUserService.findOne(ctx.params.id);
 });
 
 router.post('/', async (ctx) => {
-  ctx.body = appUserService.create(ctx.body);
+  // todo power-guard
+  ctx.body = appUserService.create(ctx.request.body);
 });
 
-router.put('/', async (ctx) => {
-  ctx.body = appUserService.update(ctx.body);
+router.put('/:id', async (ctx) => {
+  ctx.body = await appUserService.update({ ...ctx.request.body, id: ctx.params.id });
 });
 
-router.del('/{id}', async (ctx) => {
-  ctx.body = appUserService.delete(ctx.params.id);
+router.del('/:id', async (ctx) => {
+  ctx.body = await appUserService.delete(ctx.params.id);
 });
 
 export default router;

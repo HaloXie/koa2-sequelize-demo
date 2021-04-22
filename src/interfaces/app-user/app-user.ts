@@ -26,11 +26,11 @@ interface IBasicInfo {
   /**
    * 手机号
    */
-  phone?: string;
+  phone: string;
   /**
    * 真实姓名
    */
-  realName: string;
+  realName?: string;
 }
 interface IBasicOut {
   id: string;
@@ -82,12 +82,7 @@ export interface IFindOneFullOut extends IBasicInfo {
   }>;
 }
 
-export interface ICreateIn extends IBasicInfo {
-  /**
-   * 因为从中台同步, 保留中台的 app-user-id
-   */
-  id: string;
-}
+export interface ICreateIn extends IBasicInfo {}
 export interface ICreateOut extends IBasicOut {
   address: string;
 }

@@ -3,9 +3,6 @@
  */
 export class BaseService {
   cthrow(errCode: number, errMsg: string) {
-    throw new Error(`
-      code: ${errCode}
-      errMsg: ${errCode}
-    `);
+    throw new Error(JSON.stringify({ errCode, errMsg }));
   }
 }
