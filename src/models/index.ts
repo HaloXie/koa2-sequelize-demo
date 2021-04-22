@@ -1,5 +1,6 @@
 // db
 export * from './db';
+export * from './base';
 
 // app-user
 export * from './app-user/app-user.model';

@@ -5,16 +5,17 @@ import KoaHelmet from 'koa-helmet';
 import bodyParser from 'koa-bodyparser';
 import json from 'koa-json';
 import KoaLogger from 'koa-logger';
+// todo use dayjs instead moment
 import moment from 'moment';
 import * as dotenv from 'dotenv';
 dotenv.config();
 
-// 注意这里一定不能使用 @ 标记
-import { isProduction } from './config/env';
+// 注意这里的 @ 解析还不能使用
 if (isProduction()) {
   require('module-alias/register');
 }
 
+import './global';
 import { sequelize } from '@/models';
 import router from '@/routes';
 

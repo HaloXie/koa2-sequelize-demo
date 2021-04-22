@@ -1,10 +1,8 @@
 import KoaRouter from 'koa-router';
 import { AppUserService } from '@/lib';
-import { removeOptional } from '@/utils/object';
 
 const router = new KoaRouter();
-
-const appUserService = new AppUserService();
+const { findList, findOne, create, update, destroy } = AppUserService;
 
 router.get('/', async (ctx) => {
   const queries = removeOptional({
@@ -13,24 +11,24 @@ router.get('/', async (ctx) => {
     offset: ctx.query.offset,
   });
 
-  ctx.body = await appUserService.findList(queries);
+  ctx.body = await findList(queries);
 });
 
 router.get('/:id', async (ctx) => {
-  ctx.body = await appUserService.findOne(ctx.params.id);
+  ctx.body = await findOne(ctx.params.id);
 });
 
 router.post('/', async (ctx) => {
   // todo power-guard
-  ctx.body = appUserService.create(ctx.request.body);
+  ctx.body = await create(ctx.request.body);
 });
 
 router.put('/:id', async (ctx) => {
-  ctx.body = await appUserService.update({ ...ctx.request.body, id: ctx.params.id });
+  ctx.body = await update({ ...ctx.request.body, id: ctx.params.id });
 });
 
-router.del('/:id', async (ctx) => {
-  ctx.body = await appUserService.delete(ctx.params.id);
+router.delete('/:id', async (ctx) => {
+  ctx.body = await destroy(ctx.params.id);
 });
 
 export default router;

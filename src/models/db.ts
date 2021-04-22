@@ -1,4 +1,4 @@
-import { DB_NAME, DB_USERNAME, DB_PASSWORD, DB_HOST, DB_PORT, isProduction } from '@/config/env';
+import { DB_NAME, DB_USERNAME, DB_PASSWORD, DB_HOST, DB_PORT } from '@/config/env';
 import { Sequelize } from 'sequelize-typescript';
 
 export const sequelize = new Sequelize({

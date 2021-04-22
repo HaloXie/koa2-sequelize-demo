@@ -1,8 +1,8 @@
 import { Op } from 'sequelize';
 import _ from 'lodash';
 
-import { AppUserModel } from '@/models';
-import { IAppUser } from '@/interfaces';
+import { AppUserModel, AppUserExtModel } from '@/models';
+import { IAppUserExt } from '@/interfaces';
 
 export const assertExisted = async (id: number) => {
   const _one = await AppUserModel.findOne({
@@ -11,29 +11,7 @@ export const assertExisted = async (id: number) => {
   !_one && cthrow(400, '需要更新的信息不存在');
 };
 
-export const findList = async (param: IAppUser.IFindListIn) => {
-  const options = {
-    where: {},
-    limit: _.toInteger(param.limit || 10),
-    offset: _.toInteger(param.offset || 0),
-  };
-  if (param.name) {
-    options.where = {
-      name: { [Op.like]: `%${param.name}%` },
-    };
-  }
-
-  const list = await AppUserModel.findAndCountAll(options);
-  return list;
-};
-
-export const findOne = (id: string) =>
-  AppUserModel.findOne({
-    where: { id },
-    raw: true,
-  });
-
-export const create = async (param: IAppUser.ICreateIn) => {
+export const create = async (param: IAppUserExt.ICreateIn) => {
   const _count = await AppUserModel.count({
     where: {
       phone: param.phone,
@@ -48,7 +26,7 @@ export const create = async (param: IAppUser.ICreateIn) => {
   };
 };
 
-export const update = async (param: IAppUser.IUpdateIn) => {
+export const update = async (param: IAppUserExt.IUpdateIn) => {
   const _one = await AppUserModel.findOne({
     where: { id: param.id },
   });

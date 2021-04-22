@@ -9,7 +9,7 @@ module.exports = {
       {
         ...baseModel,
         app_user_id: {
-          type: STRING(50),
+          type: STRING(20),
           comment: 'user id',
         },
         reference: {

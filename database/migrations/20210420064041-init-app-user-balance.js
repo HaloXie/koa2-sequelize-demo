@@ -9,7 +9,7 @@ module.exports = {
       {
         ...baseModel,
         app_user_id: { type: STRING(20), comment: 'app-user-id' },
-        app_user_ext_id: { type: STRING(50), comment: 'app-user-ext-id' },
+        app_user_ext_id: { type: STRING(20), comment: 'app-user-ext-id' },
         type: { type: INTEGER, comment: '流水类型 1增 2减' },
         amount: {
           type: DECIMAL(50, 12),
